@@ -29,7 +29,7 @@
                 "python.linting.lintOnSave": true,
                 // flake8
                 "python.linting.flake8Enabled": true,
-                "python.linting.flake8Path": "/usr/local/bin/pflake8",
+                "python.linting.flake8Path": "$HOME/.local/bin/pflake8",
                 "python.linting.flake8Args": [
                     "--max-line-length",
                     "119",
@@ -40,17 +40,17 @@
                 ],
                 // mypy
                 "python.linting.mypyEnabled": true,
-                "python.linting.mypyPath": "$/usr/local/bin/mypy",
-                "python.sortImports.path": "$/usr/local/bin/isort",
+                "python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+                "python.sortImports.path": "$HOME/.local/bin/isort",
                 "python.sortImports.args": [
                     "--profile",
                     "black"
                 ],
                 // black
                 "python.formatting.provider": "black",
-                "python.formatting.blackPath": "/usr/local/bin/black",
+                "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
                 // bandit
-                "python.linting.banditPath": "/usr/local/bin/bandit",
+                "python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
                 // docstring
                 "autoDocstring.docstringFormat": "google",
                 "remote.containers.defaultExtensions": [

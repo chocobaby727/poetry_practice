@@ -61,3 +61,11 @@ repos:
         language: system
         always_run: true
         stages: [post-commit]
+  - repo: local
+    hooks:
+      - id: post-checkout-local
+        name: Post checkout
+        entry: echo 'checkout successed'
+        language: system
+        always_run: true
+        stages: [post-checkout]
