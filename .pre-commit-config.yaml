@@ -22,28 +22,28 @@ repos:
     hooks:
       - id: black
         name: black
-        entry: poetry run task lint-black
+        entry: black --check .
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: isort
         name: isort
-        entry: isort -c ./app
+        entry: isort --check .
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: mypy
         name: mypy
-        entry: bash -c 'export MYPYPATH="$(basename -- "$(pwd)")/" && poetry run task lint-mypy'
+        entry: bash -c 'export MYPYPATH="$(basename -- "$(pwd)")" && mypy --show-error-context . '
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: flake8
         name: flake8
-        entry: poetry run task lint-flake8
+        entry: pflake8 --show-source .
         language: python
         types: [file, python]
   - repo: local
@@ -55,16 +55,9 @@ repos:
         types: [file, python]
   - repo: local
     hooks:
-      - id: pytest
-        name: pytest
-        entry: pytest
-        language: python
-        types: [file, python]
-  - repo: local
-    hooks:
-      - id: post-checkout-local
-        name: Post checkout
+      - id: post-commit-local
+        name: post commit
+        entry: echo 'commit successed'
+        language: system
         always_run: true
-        stages: [post-checkout]
-        language: python
-        entry: echo $PRE_COMMIT_TO_REF
+        stages: [post-commit]

@@ -70,18 +70,18 @@ skips = ["B101", "B601"]
 use_vars = true
 
 [tool.taskipy.variables]
-path = "./app"
+path = "/poetry_practice/app"
 
 [tool.taskipy.tasks]
-fmt-black = "black {path}"
-fmt-isort = "isort {path}"
+fmt-black = "black ."
+fmt-isort = "isort ."
 fmt = "task fmt-black && task fmt-isort" 
 lint-black = "task fmt-black --check"
 lint-isort = "task fmt-isort --check"
-lint-flake8 = "pflake8 --show-source {path}"
-lint-mypy = "mypy {path} --show-error-context"
+lint-flake8 = "pflake8 --show-source ."
+lint-mypy = "mypy --show-error-context ."
 lint = "task lint-black && task lint-isort && task lint-flake8"
 diff-black = "task fmt-black --diff --color"
 diff-isort = "task fmt-isort --diff"
 diff = "task diff-black && task diff-isort" 
-bandit = "bandit -c pyproject.toml -r {path}"
+bandit = "bandit -c pyproject.toml -r ."
