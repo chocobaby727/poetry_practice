@@ -16,8 +16,8 @@ repos:
       - id: pretty-format-json
         exclude: ".devcontainer/"
         args: [--autofix]
-    # - id: no-commit-to-branch
-    # args: [--branch, master]
+      - id: no-commit-to-branch
+        args: [--branch, master]
   - repo: local
     hooks:
       - id: black
@@ -36,7 +36,7 @@ repos:
     hooks:
       - id: mypy
         name: mypy
-        entry: bash -c 'export MYPYPATH=poetry_practice/ && poetry run task lint-mypy'
+        entry: bash -c 'export MYPYPATH="$(basename -- "$(pwd)")/" && poetry run task lint-mypy'
         language: python
         types: [file, python]
   - repo: local
