@@ -1,0 +1,70 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+# https://zenn.dev/yiskw713/articles/3c3b4022f3e3f22d276d
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-json
+        exclude: ".devcontainer/"
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: pretty-format-json
+        exclude: ".devcontainer/"
+        args: [--autofix]
+    # - id: no-commit-to-branch
+    # args: [--branch, master]
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: poetry run task lint-black
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: isort -c ./app
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy
+        entry: bash -c 'export MYPYPATH=poetry_practice/ && poetry run task lint-mypy'
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: flake8
+        name: flake8
+        entry: poetry run task lint-flake8
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: bandit
+        name: bandit
+        entry: poetry run task bandit
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: python
+        types: [file, python]
+  - repo: local
+    hooks:
+      - id: post-checkout-local
+        name: Post checkout
+        always_run: true
+        stages: [post-checkout]
+        language: python
+        entry: echo $PRE_COMMIT_TO_REF

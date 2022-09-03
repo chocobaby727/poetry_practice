@@ -1,0 +1,87 @@
+[tool.poetry]
+name = ""
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.10"
+fastapi = "^0.81.0"
+uvicorn = {extras = ["standard"], version = "^0.18.3"}
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+mypy = "^0.971"
+isort = "^5.10.1"
+pyproject-flake8 = "^0.0.1-alpha.5"
+bandit = "^1.7.4"
+pre-commit = "^2.20.0"
+pytest = "^7.1.2"
+Sphinx = "^5.1.1"
+sphinx-rtd-theme = "^1.0.0"
+sphinx-pyproject = "^0.1.0"
+taskipy = "^1.10.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+# black設定
+# https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html
+[tool.black]
+line-length = 119
+
+# isort設定
+# https://pycqa.github.io/isort/docs/configuration/options.html
+[tool.isort]
+profile = "black" # blackと競合するため
+line_length = 119
+include_trailing_comma = true
+color_output = true
+
+# flake8設定
+# https://flake8.pycqa.org/en/latest/user/options.html
+# エラー内容一覧
+# https://flake8.pycqa.org/en/latest/user/error-codes.html
+[tool.flake8]
+max-line-length = 119
+max-complexity = 10
+extend-ignore = "E203" # blackと競合するため
+
+# mypy設定
+# https://mypy.readthedocs.io/en/stable/config_file.html?highlight=mypy.ini
+[tool.mypy]
+disallow_untyped_defs = true
+check_untyped_defs = true
+warn_unreachable = true
+warn_return_any = true
+ignore_missing_imports = true
+
+# bandit設定
+# https://bandit.readthedocs.io/en/latest/config.html
+[tool.bandit]
+exclude_dirs = ["tests", "path/to/file"]
+tests = ["B201", "B301"]
+skips = ["B101", "B601"]
+
+# taskipy設定
+# https://github.com/illBeRoy/taskipy
+[tool.taskipy.settings]
+use_vars = true
+
+[tool.taskipy.variables]
+path = "./app"
+
+[tool.taskipy.tasks]
+fmt-black = "black {path}"
+fmt-isort = "isort {path}"
+fmt = "task fmt-black && task fmt-isort" 
+lint-black = "task fmt-black --check"
+lint-isort = "task fmt-isort --check"
+lint-flake8 = "pflake8 --show-source {path}"
+lint-mypy = "mypy {path} --show-error-context"
+lint = "task lint-black && task lint-isort && task lint-flake8"
+diff-black = "task fmt-black --diff --color"
+diff-isort = "task fmt-isort --diff"
+diff = "task diff-black && task diff-isort" 
+bandit = "bandit -c pyproject.toml -r {path}"

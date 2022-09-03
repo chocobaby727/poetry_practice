@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  app:
+    working_dir: /poetry_practice
+    environment:
+      TZ: Asia/Tokyo
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
+      PYTHONUTF8: 1
+      PIP_NO_CACHE_DIR: 'off'
+      PIP_DISABLE_PIP_VERSION_CHECK: 'on'
+    tty: true
