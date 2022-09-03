@@ -66,7 +66,8 @@ repos:
     hooks:
       - id: post-checkout-local
         name: Post checkout
-        entry: echo $PRE_COMMIT_TO_REF
+        entry: echo $myarg1
+        args: [--myarg1=1, --myarg1=2]
         language: system
         always_run: true
         verbose: true
