@@ -66,7 +66,8 @@ repos:
     hooks:
       - id: post-checkout-local
         name: Post checkout
-        entry: echo 'checkout successed'
+        entry: echo $PRE_COMMIT_TO_REF
         language: system
         always_run: true
+        verbose: true
         stages: [post-checkout]
