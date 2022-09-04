@@ -67,7 +67,7 @@ repos:
     hooks:
       - id: post-checkout-local
         name: Post checkout
-        entry: echo $myarg1
+        entry: echo `git symbolic-ref HEAD | sed -e 's%^refs/heads/%%'`
         args: [--myarg1=1, --myarg1=2]
         language: system
         always_run: true
