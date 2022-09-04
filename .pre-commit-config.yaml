@@ -72,6 +72,7 @@ repos:
         entry: bash -c "echo $PRE_COMMIT_REMOTE_NAME"
         language: system
         always_run: true
+        verbose: true
         stages: [push]
 
 
