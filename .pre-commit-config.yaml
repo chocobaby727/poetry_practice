@@ -70,7 +70,6 @@ repos:
       - id: pre-push
         name: pre-push
         entry: bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -e 'master' -e 'stage' -e 'huga' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
-        args: [--myarg1=1, --myarg1=2]
         language: system
         always_run: true
         stages: [push]
