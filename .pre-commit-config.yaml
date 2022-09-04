@@ -57,13 +57,6 @@ repos:
         types: [file, python]
   - repo: local
     hooks:
-      - id: poetry-export
-        name: poetry-export
-        entry: poetry export -f requirements.txt -o requirements.txt --without-hashes
-        language: python
-        types: [file, python]
-  - repo: local
-    hooks:
       - id: pre-push
         name: pre-push
         entry: bash -c "if ! echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -E 'feature/CCDS[0-9]{3,4}' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"

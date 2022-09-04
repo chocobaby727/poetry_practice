@@ -6,8 +6,11 @@ services:
     build:
       target: dev
       context: ./
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/app/Dockerfile
       args:
         - ENVIRONMENT=DEV
+    command: sh -c 'python -m pre_commit install --install-hooks --overwrite && python -m uvicorn functions.get.main:app --reload'
     volumes:
       - .:/poetry_practice
+    ports:
+      - 80:80

@@ -1,3 +1,5 @@
+# poetry
+# https://python-poetry.org/docs/master/
 [tool.poetry]
 name = ""
 version = "0.1.0"
@@ -85,3 +87,4 @@ diff-black = "task fmt-black --diff --color"
 diff-isort = "task fmt-isort --diff"
 diff = "task diff-black && task diff-isort" 
 bandit = "bandit -c pyproject.toml -r ."
+export = "poetry export -f requirements.txt -o requirements.txt --without-hashes"
