@@ -19,7 +19,7 @@ repos:
         exclude: ".devcontainer/"
         args: [--autofix]
       - id: no-commit-to-branch
-        args: [--branch, master]
+        args: [--branch, master, --branch, develop, --branch, stage, --branch, production]
   - repo: local
     hooks:
       - id: black
@@ -57,21 +57,9 @@ repos:
         types: [file, python]
   - repo: local
     hooks:
-      - id: post-checkout
-        name: post-checkout
-        entry: bash -c 'echo `git symbolic-ref HEAD | sed -e s%^refs/heads/%%`'
-        args: [--myarg1=1, --myarg1=2]
-        language: system
-        always_run: true
-        verbose: true
-        stages: [post-checkout]
-  - repo: local
-    hooks:
       - id: pre-push
         name: pre-push
-        entry: bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -E '/feature/CCDS\d+/g' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
+        entry: bash -c "if ! echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -E 'feature/CCDS[0-9]{3,4}' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
         language: system
         always_run: true
         stages: [push]
-
-# bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -e 'master' -e 'stage' -e 'production' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
