@@ -69,10 +69,9 @@ repos:
     hooks:
       - id: pre-push
         name: pre-push
-        entry: bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -e 'master' -e 'develop' -e 'stage' -e 'production' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
+        entry: bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -E '/feature/CCDS\d+/g' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
         language: system
         always_run: true
         stages: [push]
-
 
 # bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -e 'master' -e 'stage' -e 'production' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
