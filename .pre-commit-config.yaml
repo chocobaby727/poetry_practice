@@ -69,10 +69,9 @@ repos:
     hooks:
       - id: pre-push
         name: pre-push
-        entry: bash -c "echo $PRE_COMMIT_REMOTE_NAME"
+        entry: bash -c "if echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -e 'master' -e 'develop' -e 'stage' -e 'production' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
         language: system
         always_run: true
-        verbose: true
         stages: [push]
 
 
