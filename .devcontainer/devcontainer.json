@@ -19,6 +19,7 @@
                 "files.autoSave": "afterDelay",
                 "files.autoSaveDelay": 1000,
                 "[python]": {
+                    "editor.defaultFormatter": null,
                     "editor.tabSize": 4
                 },
                 "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -29,7 +30,7 @@
                 "python.linting.lintOnSave": true,
                 // flake8
                 "python.linting.flake8Enabled": true,
-                "python.linting.flake8Path": "${env:HOME}/.local/bin/flake8",
+                "python.linting.flake8Path": "${userHome}/.local/bin/flake8",
                 "python.linting.flake8Args": [
                     "--max-line-length",
                     "119",
@@ -40,17 +41,17 @@
                 ],
                 // mypy
                 "python.linting.mypyEnabled": true,
-                "python.linting.mypyPath": "${env:HOME}/.local/bin/mypy",
-                "python.sortImports.path": "${env:HOME}/.local/bin/isort",
+                "python.linting.mypyPath": "${userHome}/.local/bin/mypy",
+                "python.sortImports.path": "${userHome}/.local/bin/isort",
                 "python.sortImports.args": [
                     "--profile",
                     "black"
                 ],
                 // black
                 "python.formatting.provider": "black",
-                "python.formatting.blackPath": "${env:HOME}/.local/bin/black",
+                "python.formatting.blackPath": "${userHome}/.local/bin/black",
                 // bandit
-                "python.linting.banditPath": "${env:HOME}/.local/bin/bandit",
+                "python.linting.banditPath": "${userHome}/.local/bin/bandit",
                 // docstring
                 "autoDocstring.docstringFormat": "google",
                 "remote.containers.defaultExtensions": [
