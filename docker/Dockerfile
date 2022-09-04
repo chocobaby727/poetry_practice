@@ -55,6 +55,7 @@ RUN poetry config virtualenvs.create false \
     && poetry completions bash | sudo tee -a /etc/bash_completion.d/poetry.bash-completion \
     && poetry install --no-root && rm -rf ~/.cache/pypoetry
 
+# CMD [ "pre-commit", "init-templatedir", "~/.git-template" ]
 
 
 # # 本番用

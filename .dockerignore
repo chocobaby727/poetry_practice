@@ -1,0 +1,7 @@
+.vscode
+.devcontainer
+.git
+.env
+.gitignore
+mypy_cache
+pytest_cache

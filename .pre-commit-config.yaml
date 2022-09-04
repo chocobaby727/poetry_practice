@@ -2,6 +2,8 @@
 # See https://pre-commit.com/hooks.html for more hooks
 # https://zenn.dev/yiskw713/articles/3c3b4022f3e3f22d276d
 default_stages: [commit]
+default_install_hook_types: [pre-commit,pre-push,commit-msg,post-checkout,post-commit]
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
@@ -13,7 +15,6 @@ repos:
       - id: check-xml
       - id: check-yaml
       - id: debug-statements
-      - id: end-of-file-fixer
       - id: pretty-format-json
         exclude: ".devcontainer/"
         args: [--autofix]
