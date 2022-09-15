@@ -7,8 +7,8 @@ services:
       target: dev
       context: ./
       dockerfile: ./docker/app/Dockerfile
-    command: sh -c 'python -m pre_commit install --install-hooks --overwrite && python -m uvicorn functions.get.main:app --reload --host=0.0.0.0 --port 8080'
+    command: sh -c 'python -m pre_commit install --install-hooks --overwrite && sleep infinity'
     volumes:
       - .:/poetry_practice
     ports:
-      - 8080:8080
+      - 8081:8081

@@ -43,7 +43,7 @@ COPY pyproject.toml poetry.lock* ./
 #     && \
 #     apt-get clean && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
 
-USER $USER
+# USER $USER
 
 RUN poetry config virtualenvs.create false \
     && poetry completions bash | sudo tee -a /etc/bash_completion.d/poetry.bash-completion \
