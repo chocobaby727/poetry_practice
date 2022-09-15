@@ -25,7 +25,7 @@
                         "source.organizeImports": true
                     }
                 },
-                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
                 "python.languageServer": "Pylance",
                 "python.linting.enabled": true,
                 "python.linting.pylintEnabled": false,
@@ -33,7 +33,7 @@
                 "python.linting.lintOnSave": true,
                 // flake8
                 "python.linting.flake8Enabled": true,
-                "python.linting.flake8Path": "/usr/local/bin/flake8",
+                "python.linting.flake8Path": "${workspaceFolder}/.venv/bin/flake8",
                 "python.linting.flake8Args": [
                     "--max-line-length",
                     "119",
@@ -44,17 +44,17 @@
                 ],
                 // mypy
                 "python.linting.mypyEnabled": true,
-                "python.linting.mypyPath": "/usr/local/bin/mypy",
-                "python.sortImports.path": "/usr/local/bin/isort",
+                "python.linting.mypyPath": "${workspaceFolder}/.venv/bin/mypy",
+                "python.sortImports.path": "${workspaceFolder}/.venv/bin/isort",
                 "python.sortImports.args": [
                     "--profile",
                     "black"
                 ],
                 // black
                 "python.formatting.provider": "black",
-                "python.formatting.blackPath": "/usr/local/bin/black",
+                "python.formatting.blackPath": "${workspaceFolder}/.venv/bin/black",
                 // bandit
-                "python.linting.banditPath": "/usr/local/bin/bandit",
+                "python.linting.banditPath": "${workspaceFolder}/.venv/bin/bandit",
                 // docstring
                 "autoDocstring.docstringFormat": "google",
                 "remote.containers.defaultExtensions": [

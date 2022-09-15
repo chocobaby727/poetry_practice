@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ARG POETRY_HOME=/opt/poetry
-ARG PYTHON_VERSION=3.9
+ARG PYTHON_VERSION=3.7
 
 
 FROM python:${PYTHON_VERSION}-buster as builder
@@ -15,7 +15,7 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 WORKDIR /poetry_practice
 COPY pyproject.toml poetry.lock* ./
 
-RUN --mount=type=cache,target=~/.cache/pypoetry poetry install --no-root
+# RUN --mount=type=cache,target=~/.cache/pypoetry poetry install --no-root
 
 
 # https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3
@@ -25,7 +25,7 @@ ARG USER="vscode"
 ARG GROUP="ccds"
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
-COPY --from=builder --chown=$USER:$GROUP /root/.cache/pypoetry /home/$USER/.cache/pypoetry
+# COPY --from=builder --chown=$USER:$GROUP /root/.cache/pypoetry /home/$USER/.cache/pypoetry
 COPY --from=builder --chown=$USER:$GROUP $POETRY_HOME $POETRY_HOME
 
 RUN groupadd -r $GROUP \
@@ -45,9 +45,10 @@ COPY pyproject.toml poetry.lock* ./
 
 # USER $USER
 
-RUN poetry config virtualenvs.create false \
-    && poetry completions bash | sudo tee -a /etc/bash_completion.d/poetry.bash-completion \
-    && poetry install --no-root && rm -rf ~/.cache/pypoetry
+RUN poetry config --local virtualenvs.in-project true \
+    && poetry completions bash | sudo tee -a /etc/bash_completion.d/poetry.bash-completion 
+    # \
+    # && poetry install --no-root && rm -rf ~/.cache/pypoetry
 
 
 # # 本番用

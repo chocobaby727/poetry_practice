@@ -7,7 +7,7 @@ services:
       target: dev
       context: ./
       dockerfile: ./docker/app/Dockerfile
-    command: sh -c 'python -m pre_commit install --install-hooks --overwrite && sleep infinity'
+    command: sh -c 'sleep infinity'
     volumes:
       - .:/poetry_practice
     ports:

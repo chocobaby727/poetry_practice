@@ -24,42 +24,35 @@ repos:
     hooks:
       - id: black
         name: black
-        entry: black --check .
+        entry: poetry run black --check .
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: isort
         name: isort
-        entry: isort --check .
+        entry: poetry run isort --check .
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: mypy
         name: mypy
-        entry: bash -c 'export MYPYPATH="$(basename -- "$(pwd)")" && mypy --show-error-context . '
+        entry: poetry run mypy .
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: flake8
         name: flake8
-        entry: pflake8 --show-source .
+        entry: poetry run flake8 --show-source --exclude=.venv/* --max-line-length=109 --ignore=E402 --max-complexity=10 --max-expression-complexity=10 --max-cognitive-complexity=10 .
+        additional_dependencies: [flake8-eradicate, pep8-naming, flake8-expression-complexity, flake8-cognitive-complexity]
         language: python
         types: [file, python]
   - repo: local
     hooks:
       - id: bandit
         name: bandit
-        entry: poetry run task bandit
+        entry: poetry run bandit -c pyproject.toml -r .
         language: python
         types: [file, python]
-  - repo: local
-    hooks:
-      - id: pre-push
-        name: pre-push
-        entry: bash -c "if ! echo `git symbolic-ref HEAD | sed s%^refs/heads/%%` | grep -E 'feature/CCDS[0-9]{3,4}' > /dev/null ; then echo 'このブランチはプッシュしないでください。' && exit 1; fi"
-        language: system
-        always_run: true
-        stages: [push]
